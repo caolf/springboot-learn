@@ -6,6 +6,8 @@ import com.clf.springboot.learn.model.user.UserQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component("userService")
 public class UserServiceImp implements UserService {
 
@@ -17,5 +19,10 @@ public class UserServiceImp implements UserService {
         UserQuery userQuery=new UserQuery();
         userQuery.setId(id);
         return userDao.queryUserById(userQuery);
+    }
+
+    @Override
+    public List<User> getAllUser(UserQuery userQuery) {
+        return userDao.getAllUser(userQuery);
     }
 }

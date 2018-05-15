@@ -73,4 +73,8 @@
         WHERE  id = #{id}
     </select>
 
+    <select id="getAllUser" parameterType="com.clf.springboot.learn.model.user.UserQuery" resultMap="userResult">
+        SELECT *
+        FROM  USER
+    </select>
 </mapper>
