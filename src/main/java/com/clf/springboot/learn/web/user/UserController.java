@@ -1,5 +1,6 @@
 package com.clf.springboot.learn.web.user;
 
+import com.clf.springboot.learn.model.user.User;
 import com.clf.springboot.learn.model.user.UserQuery;
 import com.clf.springboot.learn.service.user.UserService;
 import org.slf4j.Logger;
@@ -8,6 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.UUID;
 
 @RestController
 public class UserController {
@@ -37,12 +43,23 @@ public class UserController {
         if(userQuery==null)
             return null;
         else
-            return userService.getAllUser(userQuery);
+            return userService.getAllUser();
     }
 
-    @RequestMapping(value = "/user/test",method = {RequestMethod.GET,RequestMethod.POST})
-    public Object getUserById(){
+    @RequestMapping(value = "/lzc_web/login",method = {RequestMethod.GET,RequestMethod.POST})
+    public Object getUserById(HttpServletResponse response, HttpServletRequest request){
+        User user=new User();
+        user.setId("123");
+        user.setRealName("老板");
 
-        return "hello world!!";
+        String uuid=null;
+        if(uuid==null){
+            uuid= UUID.randomUUID().toString().toLowerCase();
+        }
+        response.addCookie(new Cookie("userName","张三"));
+        response.addCookie(new Cookie("id","123"));
+        response.addCookie(new Cookie("uuid",uuid.toString()));
+
+        return "登陆成功！欢迎！";
     }
 }

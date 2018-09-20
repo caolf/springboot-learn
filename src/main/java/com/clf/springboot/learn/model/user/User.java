@@ -1,6 +1,16 @@
 package com.clf.springboot.learn.model.user;
 
+import org.springframework.stereotype.Component;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+@Component
 public class User {
+
+    @Id
     private String id;
 
     private String realName;//真实姓名名字

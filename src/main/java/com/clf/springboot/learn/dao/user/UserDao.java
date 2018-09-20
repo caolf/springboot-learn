@@ -1,13 +1,15 @@
 package com.clf.springboot.learn.dao.user;
 
 import com.clf.springboot.learn.model.user.User;
-import com.clf.springboot.learn.model.user.UserQuery;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface UserDao {
+public interface UserDao extends JpaRepository<User,Long> {
 
-    public User queryUserById(UserQuery userQuery);
+    User findById(String id);
 
-    List<User> getAllUser(UserQuery userQuery);
+    List<User> findAll();
+
+    User save(User user);
 }

@@ -10,5 +10,7 @@ public interface UserService {
 
     public User queryUserById(String id);
 
-    public List<User> getAllUser(UserQuery userQuery);
+    public List<User> getAllUser();
+
+    public User saveUser(User user);
 }

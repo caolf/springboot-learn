@@ -16,13 +16,19 @@ public class UserServiceImp implements UserService {
 
     @Override
     public User queryUserById(String id) {
-        UserQuery userQuery=new UserQuery();
-        userQuery.setId(id);
-        return userDao.queryUserById(userQuery);
+
+        return userDao.findById(id);
     }
 
     @Override
-    public List<User> getAllUser(UserQuery userQuery) {
-        return userDao.getAllUser(userQuery);
+    public List<User> getAllUser() {
+        return userDao.findAll();
     }
+
+    @Override
+    public User saveUser(User user) {
+        return userDao.save(user);
+    }
+
+
 }
